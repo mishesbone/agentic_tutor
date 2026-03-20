@@ -9,7 +9,7 @@ from apps.ai_engine.serializers import LessonSerializer
 class RecommendationView(APIView):
     permission_classes = [IsAuthenticated]
 
-    def get(self, request):
+    def get(self, request) -> Response:
         lessons = recommend_lessons(request.user, limit=5)
         serializer = LessonSerializer(lessons, many=True)
         return Response(serializer.data)
@@ -18,7 +18,7 @@ class RecommendationView(APIView):
 class NextLessonView(APIView):
     permission_classes = [IsAuthenticated]
 
-    def get(self, request):
+    def get(self, request) -> Response:
         lessons = generate_next_lesson(request.user)
         serializer = LessonSerializer(lessons, many=True)
         return Response(serializer.data)
@@ -27,10 +27,15 @@ class NextLessonView(APIView):
 class PeerMatchingView(APIView):
     permission_classes = [IsAuthenticated]
 
-    def get(self, request):
+    def get(self, request) -> Response:
         subtopic_id = request.query_params.get("subtopic_id")
         if not subtopic_id:
             return Response({"error": "subtopic_id query param required"}, status=400)
+
+        try:
+            subtopic_id = int(subtopic_id)
+        except ValueError:
+            return Response({"error": "Invalid subtopic_id"}, status=400)
 
         matched_users = find_study_partners(request.user, subtopic_id)
         data = [{"id": u.id, "email": u.email, "name": u.full_name} for u in matched_users]
