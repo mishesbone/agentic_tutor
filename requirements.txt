@@ -1,0 +1,48 @@
+# Core Django
+Django>=5.0,<6.0
+djangorestframework>=3.15
+
+# Authentication
+djangorestframework-simplejwt>=5.3
+
+# Database
+psycopg2-binary>=2.9
+
+# Environment variables
+python-dotenv>=1.0
+
+# Async + Task Queue
+celery>=5.3
+redis>=5.0
+
+# Caching
+django-redis>=5.4
+
+# AI / ML
+openai>=1.0
+numpy>=1.26
+scikit-learn>=1.4
+
+# HTTP requests
+requests>=2.31
+
+# WebSockets (real-time collaboration)
+channels>=4.0
+channels-redis>=4.1
+
+# Server
+gunicorn>=21.2
+
+# Static files (production)
+whitenoise>=6.6
+
+# Monitoring & Logging
+sentry-sdk>=1.40
+
+# Testing
+pytest>=8.0
+pytest-django>=4.8
+
+# Code quality
+black>=24.0
+flake8>=7.0
