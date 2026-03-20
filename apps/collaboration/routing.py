@@ -1,7 +1,6 @@
-# apps/collaboration/routing.py
 from django.urls import re_path
-from . import consumers
+from .consumers import CollabConsumer
 
 websocket_urlpatterns = [
-    re_path(r'ws/collab/(?P<room_name>\w+)/$', consumers.CollabConsumer.as_asgi()),
+    re_path(r'ws/collaboration/(?P<room_name>\w+)/$', CollabConsumer.as_asgi()),
 ]
