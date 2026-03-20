@@ -1,58 +1,39 @@
-# Core Django
-Django>=5.0,<6.0
-djangorestframework>=3.15
+# Django core
+Django>=4.2,<5.0
 
-# Authentication
-djangorestframework-simplejwt>=5.3
+# Django REST Framework
+djangorestframework>=3.14,<4.0
 
 # Database
-psycopg2-binary>=2.9
+psycopg2-binary>=2.9,<3.0  # PostgreSQL adapter
 
-# Environment variables
-python-dotenv>=1.0
+# Celery for async tasks
+celery>=5.3,<6.0
+redis>=5.0,<6.0  # Broker for Celery
 
-# Async + Task Queue
-celery>=5.3
-redis>=5.0
+# Django Channels for real-time collaboration
+channels>=4.0,<5.0
+channels-redis>=4.0,<5.0
 
-# Caching
-django-redis>=5.4
+# CORS for frontend integration
+django-cors-headers>=4.0,<5.0
 
-# AI / ML
-openai>=1.0
-numpy>=1.26
-scikit-learn>=1.4
+# Authentication & Security
+djangorestframework-simplejwt>=6.0,<7.0  # JWT auth
 
-# HTTP requests
-requests>=2.31
+# AI/ML libraries
+numpy>=1.24,<2.0
+pandas>=2.0,<3.0
+scikit-learn>=1.2,<2.0
 
-# WebSockets (real-time collaboration)
-channels>=4.0
-channels-redis>=4.1
+# Optional NLP / embeddings (for tutor agent or recommendation engine)
+sentence-transformers>=2.2,<3.0
+torch>=2.1,<3.0
 
-# Server
-gunicorn>=21.2
+# Development tools (optional but recommended)
+python-dotenv>=1.0,<2.0  # load environment variables
+gunicorn>=21.2,<22.0    # production WSGI server
 
-# Static files (production)
-whitenoise>=6.6
-
-# Monitoring & Logging
-sentry-sdk>=1.40
-
-# Testing
-pytest>=8.0
-pytest-django>=4.8
-
-# Code quality
-black>=24.0
-flake8>=7.0
-
-# For large-scale ML pipelines
-pandas>=2.2
-
-# For feature stores / analytics
-apache-airflow
-
-# For search
-elasticsearch>=8.0
-django-elasticsearch-dsl
+# Optional for testing
+pytest>=8.0,<9.0
+pytest-django>=4.5,<5.0
