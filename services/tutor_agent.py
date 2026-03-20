@@ -4,17 +4,13 @@ from apps.users.models import User
 
 def generate_next_lesson(user: User):
     """
-    Core tutor agent function.
-    Decides next lesson to recommend.
+    Decide the next lesson dynamically for the user.
     """
-    # Step 1: Find weakest subtopics
     lessons = recommend_lessons(user, limit=3)
-
-    # Step 2: Check for prerequisites
     next_lessons = []
+
     for lesson in lessons:
         prereqs = lesson.prerequisites.all()
         if all(Attempt.objects.filter(user=user, question__lesson=p.required_lesson, correct=True).exists() for p in prereqs):
             next_lessons.append(lesson)
-
     return next_lessons
