@@ -46,3 +46,13 @@ pytest-django>=4.8
 # Code quality
 black>=24.0
 flake8>=7.0
+
+# For large-scale ML pipelines
+pandas>=2.2
+
+# For feature stores / analytics
+apache-airflow
+
+# For search
+elasticsearch>=8.0
+django-elasticsearch-dsl
