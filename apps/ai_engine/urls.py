@@ -1,13 +1,19 @@
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
-from apps.ai_engine.services import recommend_lessons
+from django.urls import path
+from .views import (
+    RecommendationView,
+    NextLessonView,
+    PeerMatchingView,
+)
 
-class RecommendationView(APIView):
-    permission_classes = [IsAuthenticated]
+app_name = "ai_engine"  # Namespacing for reverse lookups
 
-    def get(self, request):
-        user = request.user
-        lessons = recommend_lessons(user, limit=5)
-        data = [{"id": l.id, "title": l.title, "subtopic": l.subtopic.name} for l in lessons]
-        return Response(data)
+urlpatterns = [
+    # Returns AI-generated lesson recommendations for the logged-in user
+    path("recommendations/", RecommendationView.as_view(), name="recommendations"),
+    
+    # Returns the next lesson(s) selected by the tutor agent
+    path("next_lesson/", NextLessonView.as_view(), name="next_lesson"),
+    
+    # Returns a list of recommended study partners for the user
+    path("peer_matching/", PeerMatchingView.as_view(), name="peer_matching"),
+]
