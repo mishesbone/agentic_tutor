@@ -1,5 +1,5 @@
 from celery import shared_task
-from apps.ai_engine.services import recommend_lessons
+from apps.ai_engine.services.recommendation import recommend_lessons
 from apps.users.models import User
 
 @shared_task
